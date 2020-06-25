@@ -13,5 +13,4 @@ public class PhotoAppApiZuulGatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PhotoAppApiZuulGatewayApplication.class, args);
 	}
-
 }

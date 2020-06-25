@@ -1,0 +1,59 @@
+api:
+  login:
+    url:
+      path: /users-ws/users/login
+  registration:
+    url:
+      path: /users-ws/users/createUser
+  users:
+    actuator:
+      url:
+        path: /users-ws/actuator/*
+  zuul:
+    actuator:
+      url:
+        path: /actuator/*
+zuul:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  sensitiveHeaders: Cookie, Set-Cookie
+  ignoredHeaders: Access-Control-Allow-Origin
+  host:
+    connect-timeout-millis: 60000 # starting the connection
+    socket-timeout-millis: 120000  # monitor the continuous incoming data flow
+  ribbon:
+    eureka:
+      enabled: true
+      ReadTimeout: 120000
+      ConnectTimeout: 3000
+  hystrix:
+    command:
+      default:
+        execution:
+          isolation:
+            strategy: THREAD
+            thread:
+              timeoutInMilliseconds: 60000
+authorization:
+  token:
+    header:
+      name: Authorization
+      prefix: Bearer
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka
+  instance:
+    leaseRenewalIntervalInSeconds: 30
+    hostname: localhost
+server:
+  port: 8011
+spring:
+  application:
+    name: zuul
+token:
+  secret: hfgry463hf746hf573ydh475fhy5739
+ribbon:
+  ConnectTimeout: 120000
+  ReadTimeout: 120000
+
+
